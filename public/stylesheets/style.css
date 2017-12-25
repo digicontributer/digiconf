@@ -1,0 +1,74 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  color: #FAF8F7;
+  background: #0066cc; /* Old browsers */
+  background: -moz-linear-gradient(left, #0066cc 1%, #012351 100%);
+  background: -webkit-linear-gradient(left, #0066cc 1%,#012351 100%);
+  background: linear-gradient(to right, #0066cc 1%,#012351 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0066cc', endColorstr='#012351',GradientType=1 );
+}
+
+a {
+  color: #FAF8F7;
+}
+
+a:hover {
+  color: #FAF8F7;
+  text-decoration: none;
+}
+
+header {
+  padding: 2px 15px 2px;
+}
+
+.content {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+label {
+  font-size: 1.5rem;
+}
+
+textarea {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-sizing: border-box;
+  display: block;
+  font-family: Consolas,Menlo,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace,serif;
+  font-size: 13px;
+  height: 200px;
+  min-height: 200px;
+  line-height: 21px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.form-check-label {
+  font-size: 1rem !important;
+}
+
+#save, #back {
+  margin-top: 25px;
+  margin-right: 20px;  
+}
+
+.btn-primary {
+  background-color: #06c;
+}
+
+.btn-warning {
+  background-color: #925D64;
+  border-color: #925D64;
+}
+
+.btn-warning:hover {
+  background-color: #C16E70;
+  border-color: #C16E70;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>DigiConf</h1>
+      </a>
+    </header>
+    <div class="content">
+      <div id="formbox" class="form">
+        <form id="generateconf" class="form">
+
+          <div class="form-group">
+            <label for="os">Operating System</label>
+            <select class="form-control" id="os">
+              <option>Windows</option>
+              <option>Linux</option>
+              <option>Mac OS</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="user">RPC Username</label>
+            <input type="text" class="form-control" id="user" placeholder="user">
+          </div>
+
+          <div class="form-group">
+            <label for="algo">Prefered Algorithm</label>
+            <select class="form-control" id="algo">
+              <option>Scrypt</option>
+              <option>Sha256d</option>
+              <option>Groestl</option>
+              <option>Qubit</option>
+              <option>Skein</option>
+            </select>
+          </div>
+
+          <fieldset class="form-group">
+            <legend>Enable Transaction indexing?</legend>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="txindex" id="txindex">
+                Yes
+              </label>
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="txindex" id="txindex" checked>
+                No
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="maxconnections">Maximum number of connections (defaults to 8)</label>
+            <input type="number" class="form-control" id="maxconnections" value="8">
+          </div>
+
+          <button type="submit" class="btn btn-primary float-right">Generate Conf</button>
+        </form>
+      </div>
+
+      <div id="conf" class="textarea-border">
+        <textarea id="nodebox" readonly>
+        </textarea>
+        <button id="back" class="btn btn-warning">Generate new config</button>
+        <button id="save" class="btn btn-primary float-right">Save As digibyte.conf</button>
+      </div>
+    </div> 
+
+    <script>
+       //document.getElementById('nodebox').style.height = document.getElementById('nodebox').scrollHeight+'px';
+       $(document).ready(function() {
+         $('#conf').hide();
+
+         $('#generateconf').submit(function(e) {
+          e.preventDefault()
+          var maxconnections = $('#maxconnections').val();
+          var algo = $('#algo').val();
+          var os = $('#os').val();
+          var txindex = $('#txindex').is(":checked");
+          var user = $('#user').val();
+          $.post(location.protocol + '//' + location.host, { maxconnections, algo, txindex, user, os })
+            .then(resp => {
+              $('#nodebox').html(resp);
+              $('#formbox').hide();
+              $('#conf').show();
+              document.getElementById('nodebox').style.height = document.getElementById('nodebox').scrollHeight+'px';
+            });
+         });
+
+         $('#save').click(function(e) {
+          e.preventDefault();
+          var a = document.createElement("a");
+          var contents = $('#nodebox').html();
+          var file = new Blob([contents], { type: 'text/plain' });
+          a.href = URL.createObjectURL(file);
+          a.download = 'digibyte.conf';
+          a.click();
+        });
+
+        $('#back').click(function(e) {
+          e.preventDefault();
+          $('#conf').hide();
+          $('#formbox').show();
+        })
+
+
+       });
+    </script>
+  </body>
+</html>
