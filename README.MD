@@ -12,7 +12,6 @@ npm start
 
 ## Prerequisites
 - Node.js
-- Python
 
 ## Contributing
 

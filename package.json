@@ -7,13 +7,13 @@
     "test": "mocha test.js"
   },
   "dependencies": {
+    "base64it": "^1.1.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "morgan": "~1.9.0",
-    "node-cmd": "^3.0.0",
     "node-dig-dns": "^0.2.8",
     "serve-favicon": "~2.4.5"
   },
